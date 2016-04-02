@@ -6,7 +6,7 @@
 					<th><?php echo translate('name');?></th>					
 					
 					
-					<th><?php echo translate('length(km)')();?></th>
+					<th><?php echo translate('length(km)');?></th>
 					<th><?php echo translate('people');?></th>
 									
 					
