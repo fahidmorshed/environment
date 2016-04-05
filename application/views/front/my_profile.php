@@ -1,7 +1,7 @@
 <div class="container">
       
       <?php
-        $datestring = "%D %M, %Y - %h:%i %a";
+        $datestring = "%d %M, %Y - %h:%i %a";
           $time = time();
       ?>
 
@@ -12,14 +12,10 @@
           <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title"><strong><a href="<?php echo base_url();?>index.php/profileC">
-              <?php echo"$other_row->name $other_row->last_name";
-                $to = $other_row->user_id;
-              ?></a></strong></h3>
+              <?php echo"$row->name $row->last_name";?></a></strong></h3>
+              <a href="<?php echo base_url();?>index.php/profileC/edit">Edit Profile Info</a>
               <div>
-              <span class="pull-right">
-                        <a href="<?php echo base_url();?>index.php/inboxC/compose/<?php echo $to;?>" data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-                        <!--<a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a> -->
-                  </span>
+              
                 <p class=" text-info"><small><?php echo mdate($datestring, $time);?></small></p>
                 <p style="color: green"><?php echo "$message"?></p>
               </div>
@@ -28,11 +24,11 @@
               <div class="row">
                 <div class="col-md-3 col-lg-3 " align="center">
                 <?php $img = "";
-                  if($other_row->image_id == NULL){
+                  if($row->image_id == NULL){
                     $img = "images/users/default_user.jpg";
                   }
                   else{
-                    $img = "images/users/".$other_row->image_id;
+                    $img = "images/users/".$row->image_id;
                   }
                 ?> 
 
@@ -44,15 +40,15 @@
                     <tbody>
                       <tr>
                         <td>Email:</td>
-                        <td><a href="mailto:info@support.com"><?php echo"$other_row->email";?></td>
+                        <td><a href="mailto:info@support.com"><?php echo"$row->email";?></td>
                       </tr>
                       <tr>
                         <td>Phone:</td>
-                        <td><?php echo"$other_row->phone";?></td>
+                        <td><?php echo"$row->phone";?></td>
                       </tr>
                       <tr>
                         <td>Address:</td>
-                        <td><?php echo"$other_row->address";?></td>
+                        <td><?php echo"$row->address";?></td>
                       </tr>
                    
                         
@@ -60,7 +56,7 @@
                     </tbody>
                   </table>
                   
-                  <a href="<?php echo base_url();?>index.php/propertyC/view/<?php echo $other_row->user_id;?>" class="btn btn-primary"><?php echo "$other_row->name"?>'s' Properties</a>
+                  <a href="<?php echo base_url();?>index.php/propertyC/view" class="btn btn-primary">My Properties</a>
                 </div>
               </div>
             </div>

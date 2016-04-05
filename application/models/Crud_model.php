@@ -725,6 +725,25 @@ class Crud_model extends CI_Model
         $this->db->order_by('news_id','desc');
         return $this->db->get('news')->result_array();
     }
+
+    function limit_chars($string, $char_limit)
+    {
+        $length = 0;
+        $return = array();
+        $words  = explode(" ", $string);
+        foreach ($words as $row) {
+            $length += strlen($row);
+            $length += 1;
+            if ($length < $char_limit) {
+                array_push($return, $row);
+            } else {
+                array_push($return, '...');
+                break;
+            }
+        }
+        
+        return implode(" ", $return);
+    }
     
 }
 

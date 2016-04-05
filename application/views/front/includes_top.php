@@ -1,4 +1,4 @@
-	<title>Active Newspaper</title>
+	<title>City Environment</title>
 
 	<!-- Meta -->
 	<meta charset="utf-8">

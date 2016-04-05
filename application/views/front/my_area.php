@@ -10,7 +10,7 @@
 			<div class="tab-v4 margin-bottom-40">
 				<!-- Tab Heading -->
 				<div class="tab-heading">
-					<h2>Recent Initiatives</h2>
+					<h2>Recent Initiatives <small>in</small> <strong style="color: #996633"><?php echo "$area_name";?></strong></h2>
 					<ul class="nav nav-tabs" role="tablist">
 						<li class="home active">
 							<a href="#tab-v4-a1" role="tab" data-toggle="tab">Awareness Programs</a>
@@ -754,7 +754,7 @@
 			<div class="col-md-3">
 				<!-- Blog Thumb v3 -->
 				<div class="margin-bottom-50">
-					<h2 class="title-v4">Recent Public Feedbacks</h2>
+					<h2 class="title-v4">Recent Public Feedbacks <small>in</small> <strong style="color: #996633"><?php echo "$area_name";?></strong></h2>
 
 					<?php
 					if($recent_reviews != ""){ 

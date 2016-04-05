@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.4.14
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2016 at 05:51 PM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- Generation Time: Apr 02, 2016 at 02:48 PM
+-- Server version: 5.6.26
+-- PHP Version: 5.6.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `environment`
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `admin` (
-`admin_id` int(11) NOT NULL,
+  `admin_id` int(11) NOT NULL,
   `name` longtext,
   `phone` longtext,
   `address` longtext,
@@ -54,7 +54,7 @@ INSERT INTO `admin` (`admin_id`, `name`, `phone`, `address`, `email`, `password`
 --
 
 CREATE TABLE IF NOT EXISTS `air_pollution` (
-`air_pollution_id` int(11) NOT NULL,
+  `air_pollution_id` int(11) NOT NULL,
   `air_pollution_type_id` int(11) DEFAULT NULL,
   `area_id` int(11) DEFAULT NULL,
   `employee_id` int(11) DEFAULT NULL,
@@ -79,7 +79,7 @@ INSERT INTO `air_pollution` (`air_pollution_id`, `air_pollution_type_id`, `area_
 --
 
 CREATE TABLE IF NOT EXISTS `air_pollution_type` (
-`air_pollution_type_id` int(11) NOT NULL,
+  `air_pollution_type_id` int(11) NOT NULL,
   `type` varchar(200) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -97,7 +97,7 @@ INSERT INTO `air_pollution_type` (`air_pollution_type_id`, `type`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `area` (
-`area_id` int(11) NOT NULL,
+  `area_id` int(11) NOT NULL,
   `name` varchar(256) DEFAULT NULL,
   `union_id` int(11) DEFAULT NULL,
   `admin_id` int(11) DEFAULT NULL,
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `area` (
   `block` varchar(256) DEFAULT NULL,
   `people` int(11) NOT NULL,
   `length` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `area`
@@ -113,8 +113,7 @@ CREATE TABLE IF NOT EXISTS `area` (
 
 INSERT INTO `area` (`area_id`, `name`, `union_id`, `admin_id`, `status_id`, `block`, `people`, `length`) VALUES
 (1, 'Green hosuseing', 1, 2, 1, 'Bolock a,block b,Block c', 1300, 11),
-(2, 'Downtown', NULL, 2, 1, 'fdgfd,fdsfd,dfdf', 1212, 3),
-(3, 'BUET', 1, 2, 1, 'A, B, C, D', 5000, 2);
+(2, 'Downtown', NULL, 2, 1, 'fdgfd,fdsfd,dfdf', 1212, 3);
 
 -- --------------------------------------------------------
 
@@ -123,7 +122,7 @@ INSERT INTO `area` (`area_id`, `name`, `union_id`, `admin_id`, `status_id`, `blo
 --
 
 CREATE TABLE IF NOT EXISTS `authority` (
-`authority_id` int(11) NOT NULL,
+  `authority_id` int(11) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `email` varchar(200) DEFAULT NULL,
   `password` varchar(200) DEFAULT NULL,
@@ -148,8 +147,7 @@ INSERT INTO `authority` (`authority_id`, `name`, `email`, `password`, `phone`, `
 --
 
 CREATE TABLE IF NOT EXISTS `awareness` (
-`awareness_id` int(11) NOT NULL,
-  `awareness_type` int(11) NOT NULL,
+  `awareness_id` int(11) NOT NULL,
   `pollution_type_id` int(11) NOT NULL,
   `area_id` int(11) DEFAULT NULL,
   `employee_id` int(11) DEFAULT NULL,
@@ -158,15 +156,15 @@ CREATE TABLE IF NOT EXISTS `awareness` (
   `title` longtext,
   `focus` longtext,
   `aim` longtext
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `awareness`
 --
 
-INSERT INTO `awareness` (`awareness_id`, `awareness_type`, `pollution_type_id`, `area_id`, `employee_id`, `description`, `time`, `title`, `focus`, `aim`) VALUES
-(1, 1, 1, 3, 1, 'Funding is the act of providing financial resources, usually in the form of money, or other values such as effort or time, to finance a need, program, and project, usually by an organisation or government. Generally, this word is used when a firm uses its internal reserves to satisfy its necessity for cash, while the term ‘financing‘ is used when the firms acquires capital from external sources.[1]\r\n\r\nSources of funding include credit, venture capital, donations, grants, savings, subsidies, and taxes. Fundings such as donations, subsidies, and grants that have no direct requirement for return of investment are described as "soft funding" or "crowdfunding". Funding that facilitates the exchange of equity ownership in a company for capital investment via an online funding portal as per the Jumpstart Our Business Startups Act (alternately, the "JOBS Act of 2012") (U.S.) is known as equity crowdfunding.\r\n\r\nFunds can be allocated for either short-term or long-term purposes', '12/03/2016', 'In economics funds are injected into the market as capital by lenders and taken as loans by borrowers.', 'Sources of funding include credit, venture capital, donations, grants, savings, subsidies, and taxes. Fundings such as donations, subsidies, and grants that have no direct requirement for return of investment are described as "soft funding" or "crowdfunding". Funding that facilitates the exchange of equity ownership in a company for capital investment via an online funding portal as per the Jumpstart Our Business Startups Act (alternately, the "JOBS Act of 2012") (U.S.) is known as equity crowdfunding.\r\n\r\nFunds can be allocated for either short-term or long-term purposes.', ' Funding that facilitates the exchange of equity ownership in a company for capital investment via an online funding portal as per the Jumpstart Our Business Startups Act (alternately, the "JOBS Act of 2012") (U.S.) is known as equity crowdfunding.\r\n\r\nFunds can be allocated for either short-term or long-term purposes.'),
-(2, 2, 1, 1, 1, 'A new awareness program for noise reduction in the city area for children safety.', '2016-04-14', 'Save a children. A child needs to be protected against noise.', 'Billboard along the road sides and public squares.', 'Make public aware of the damages that is done for excessive noise.');
+INSERT INTO `awareness` (`awareness_id`, `pollution_type_id`, `area_id`, `employee_id`, `description`, `time`, `title`, `focus`, `aim`) VALUES
+(1, 1, 1, 1, 'Funding is the act of providing financial resources, usually in the form of money, or other values such as effort or time, to finance a need, program, and project, usually by an organisation or government. Generally, this word is used when a firm uses its internal reserves to satisfy its necessity for cash, while the term ‘financing‘ is used when the firms acquires capital from external sources.[1]\r\n\r\nSources of funding include credit, venture capital, donations, grants, savings, subsidies, and taxes. Fundings such as donations, subsidies, and grants that have no direct requirement for return of investment are described as "soft funding" or "crowdfunding". Funding that facilitates the exchange of equity ownership in a company for capital investment via an online funding portal as per the Jumpstart Our Business Startups Act (alternately, the "JOBS Act of 2012") (U.S.) is known as equity crowdfunding.\r\n\r\nFunds can be allocated for either short-term or long-term purposes', '12/03/2016', 'In economics funds are injected into the market as capital by lenders and taken as loans by borrowers.', 'Sources of funding include credit, venture capital, donations, grants, savings, subsidies, and taxes. Fundings such as donations, subsidies, and grants that have no direct requirement for return of investment are described as "soft funding" or "crowdfunding". Funding that facilitates the exchange of equity ownership in a company for capital investment via an online funding portal as per the Jumpstart Our Business Startups Act (alternately, the "JOBS Act of 2012") (U.S.) is known as equity crowdfunding.\r\n\r\nFunds can be allocated for either short-term or long-term purposes.', ' Funding that facilitates the exchange of equity ownership in a company for capital investment via an online funding portal as per the Jumpstart Our Business Startups Act (alternately, the "JOBS Act of 2012") (U.S.) is known as equity crowdfunding.\r\n\r\nFunds can be allocated for either short-term or long-term purposes.'),
+(6, 1, 1, 1, 'Molestiae adipisicing voluptas amet, ut et et sit minus elit, sint, tempore, excepteur quas commodi consectetur, ex praesentium sed quis quia dolor rerum consectetur, possimus, id sed accusantium similique modi in tempora velit aliquid dolor mollit consequatur, corporis illum, aliquip ut molestiae veritatis incidunt, cum.', '2016-04-14', 'Non id, aute alias dolor modi officiis est consequat. Aliqua. Nihil dignissimos necessitatibus itaque cupidatat voluptatem. Adipisci nemo excepturi pariatur? Quos quod voluptatibus dolorem ab ut ipsa, est qui.', 'Est, ullamco nisi ex pariatur. Sint excepteur sit, ut quo architecto expedita veniam, cupiditate aliqua. Illum, voluptatem, excepturi exercitation sunt sunt suscipit exercitation sed assumenda adipisicing magnam Nam aut quod amet.', 'Tempora quis et ut molestiae voluptate repudiandae id totam ut suscipit perferendis tempore, tempore, exercitation omnis magni qui qui recusandae. Quam fugiat, cumque quis cumque sed enim dolorem molestiae qui velit ea ullamco dolorem maxime corporis molestias enim in dolorem facere ipsum, nihil in.');
 
 -- --------------------------------------------------------
 
@@ -175,17 +173,9 @@ INSERT INTO `awareness` (`awareness_id`, `awareness_type`, `pollution_type_id`, 
 --
 
 CREATE TABLE IF NOT EXISTS `awareness_type` (
-`awareness_type_id` int(11) NOT NULL,
+  `awareness_type_id` int(11) NOT NULL,
   `type` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `awareness_type`
---
-
-INSERT INTO `awareness_type` (`awareness_type_id`, `type`) VALUES
-(1, 'Environment Law'),
-(2, 'Awareness Program');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -194,14 +184,14 @@ INSERT INTO `awareness_type` (`awareness_type_id`, `type`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `blog` (
-`blog_id` int(11) NOT NULL,
+  `blog_id` int(11) NOT NULL,
   `title` longtext,
   `summary` longtext,
   `description` longtext,
   `motivation` longtext,
   `pollution_type_id` int(11) DEFAULT NULL,
   `date` varchar(200) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `blog`
@@ -209,11 +199,7 @@ CREATE TABLE IF NOT EXISTS `blog` (
 
 INSERT INTO `blog` (`blog_id`, `title`, `summary`, `description`, `motivation`, `pollution_type_id`, `date`) VALUES
 (1, 'Restriction on the driving of vehicles producing smoke harmful to the environment.- ', '(1) There shall not be driven any vehicle producing smoke which is injurious to health or harmful to the environment. \r\n(2) If the General Manager or any officer authorised by him in this behalf is satisfied that any moving vehicle emits smoke which is injurious to health or harmful to the environment, he may immediately stop and examine the vehicle and may give such directions in respect of anything relating to the examination of the vehicle as he thinks necessary.', 'a) co-ordination with the activities of any authority or institution in relation with the purposes of this Act; \r\nb) prevention of accidents which may cause environmental deterioration or pollution, taking security measures and laying down, and giving directions relating to, remedial measures for such accidents; \r\nc) giving advice or, as the case may be, directions to the persons concerned regarding the eco-friendly use, preservation, transport, import or export of hazardous substances or constituents thereof; \r\nd) investigating and examining information etc. relating to the protection, improvement and pollution of the environment and rendering assistance in such work to any other authority or institution; \r\ne) inspection of any places, premises, plants, machinery, manufactoring or other processes, materials or substances for the purpose of improving the environment and controlling and abating environmental pollution and giving of orders or directions to authorities or persons competent for the prevention, control and abatement of environmental pollution; \r\nf) collection, publication and dissemination of information relating to environmental pollution; \r\ng) giving advice to the Government for the avoidance of such manufactoring processes, matters and articles as may pollute the environment; \r\nh) carrying out programmes for the surveillance of the quality of drinking water and making reports and giving advice or, as the case may be, directions to all persons concerned to maintain the standard of drinking water.', 'f) collection, publication and dissemination of information relating to environmental pollution; ', 1, '12/3/2016'),
-(2, 'Quisquam non quo ut aliquip labore suscipit voluptatem, et est, saepe voluptas facere consequatur, hic molestiae sed dolore aperiam laborum eligendi quod sunt, qui ut rerum quo occaecat fugit, est anim architecto et qui non tenetur sed nisi enim mollit fugit, voluptate cillum itaque labore dolorem dolorem dolore est, dolorem exercitation omnis asperiores aut laudantium, libero voluptatibus ipsa, laudantium, nostrum cum iure magni veniam, voluptate fuga.', 'Molestiae reiciendis laudantium, autem quisquam aute consectetur ea adipisicing ullam adipisci eos, ut velit rerum repudiandae libero voluptatem ex autem sed at nemo earum beatae aut commodo quidem consectetur, quo magnam eum in id sit perferendis vero doloremque nihil atque et blanditiis voluptatem.', 'Et et libero aut ullamco consequatur rerum iusto accusantium et fuga. Officia accusantium Nam aliquam.', 'Dolor vel qui duis qui magna a earum ullam eos rerum cupiditate explicabo. Distinctio. Veniam, non veritatis labore quod cupiditate aliquip molestias explicabo. Non exercitation et molestiae ex sunt nisi expedita eaque ea magnam laudantium, ullam aliquid iusto sint, aperiam sed minim autem quos ea enim ut et eos dolore laborum. Voluptas distinctio. Laborum dolorem dignissimos molestiae nihil natus enim assumenda ducimus, obcaecati ipsam deserunt dolore est hic pariatur. Autem accusamus reiciendis nostrum nisi ducimus, in Nam distinctio. Neque aut.', 2, '03/06/2013'),
-(3, 'Inventore animi, tenetur esse, veniam, et enim eos, sed corrupti, voluptas nulla.', 'Amet, repudiandae qui temporibus nihil consequuntur eos doloremque laboris excepteur ut quasi ut qui voluptate iusto ex animi, in.', 'Rerum eum ut sed lorem ea nostrud illum, ut illum, id laboris voluptas.', 'Unde proident, nesciunt, ea possimus, eveniet, magna et aperiam consequatur? Officia nisi labore qui asperiores esse eum quibusdam.', 3, '03/03/2012'),
-(4, 'Noise bla bla', '2016-04-04 23:36:10', 'bla bla bla...', 'more bla bla...', 3, ''),
-(5, 'Inventore animi, tenetur esse, veniam, et enim eos, sed corrupti, voluptas nulla.', 'Amet, repudiandae qui temporibus nihil consequuntur eos doloremque laboris excepteur ut quasi ut qui voluptate iusto ex animi, in.', 'Rerum eum ut sed lorem ea nostrud illum, ut illum, id laboris voluptas.', 'Unde proident, nesciunt, ea possimus, eveniet, magna et aperiam consequatur? Officia nisi labore qui asperiores esse eum quibusdam.', 4, '06/12/2014'),
-(6, 'Garbage', 'blaaa...', 'test only', 'test', 4, '03/07/2015');
+(2, 'Quisquam non quo ut aliquip labore suscipit voluptatem, et est, saepe voluptas facere consequatur, hic molestiae sed dolore aperiam laborum eligendi quod sunt, qui ut rerum quo occaecat fugit, est anim architecto et qui non tenetur sed nisi enim mollit fugit, voluptate cillum itaque labore dolorem dolorem dolore est, dolorem exercitation omnis asperiores aut laudantium, libero voluptatibus ipsa, laudantium, nostrum cum iure magni veniam, voluptate fuga.', 'Molestiae reiciendis laudantium, autem quisquam aute consectetur ea adipisicing ullam adipisci eos, ut velit rerum repudiandae libero voluptatem ex autem sed at nemo earum beatae aut commodo quidem consectetur, quo magnam eum in id sit perferendis vero doloremque nihil atque et blanditiis voluptatem.', 'Et et libero aut ullamco consequatur rerum iusto accusantium et fuga. Officia accusantium Nam aliquam.', 'Dolor vel qui duis qui magna a earum ullam eos rerum cupiditate explicabo. Distinctio. Veniam, non veritatis labore quod cupiditate aliquip molestias explicabo. Non exercitation et molestiae ex sunt nisi expedita eaque ea magnam laudantium, ullam aliquid iusto sint, aperiam sed minim autem quos ea enim ut et eos dolore laborum. Voluptas distinctio. Laborum dolorem dignissimos molestiae nihil natus enim assumenda ducimus, obcaecati ipsam deserunt dolore est hic pariatur. Autem accusamus reiciendis nostrum nisi ducimus, in Nam distinctio. Neque aut.', 2, '2009-06-03');
 
 -- --------------------------------------------------------
 
@@ -222,7 +208,7 @@ INSERT INTO `blog` (`blog_id`, `title`, `summary`, `description`, `motivation`, 
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
-`category_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
   `category_name` longtext,
   `description` longtext
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
@@ -261,19 +247,11 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 
 INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
 ('351c25f0c14b74376bc27fca4b3fae5e9de19ff1', '::1', 1459601185, 0x5f5f63695f6c6173745f726567656e65726174657c693a313435393630313138353b74696d657374616d707c693a313435393630313138353b),
-('3b4f7b927bfad6934141e1935835a9d343dbb278', '::1', 1459809447, 0x5f5f63695f6c6173745f726567656e65726174657c693a313435393830373738313b74696d657374616d707c693a313435393830393434373b),
 ('4119145783c448da44c838624d468b35be76bba3', '::1', 1459527949, 0x5f5f63695f6c6173745f726567656e65726174657c693a313435393532373934303b74696d657374616d707c693a313435393532373934393b),
-('42d546c4f7c16d16fbfb07b5ad2519ce8db8a27e', '::1', 1459794318, 0x5f5f63695f6c6173745f726567656e65726174657c693a313435393738383830383b74696d657374616d707c693a313435393739343331383b),
-('4fe5f9bcd8fb7aacc1e0b5df695f212a8b345159', '::1', 1459871460, 0x5f5f63695f6c6173745f726567656e65726174657c693a313435393837303337373b74696d657374616d707c693a313435393837313436303b757365725f6e616d657c733a363a227075626c6963223b757365725f69647c733a313a2238223b6c6f67696e7c733a333a22796573223b61646d696e5f6c6f67696e7c733a333a22796573223b61646d696e5f69647c733a313a2232223b617265615f69647c733a313a2231223b61646d696e5f6e616d657c733a31343a224d722e204163636f756e74616e74223b747970657c733a31353a226c6f63616c5f617574686f72697479223b7469746c657c733a353a2261646d696e223b),
 ('5913196b96bc5ab749fcda3d17972cd4cd668482', '::1', 1459601185, 0x5f5f63695f6c6173745f726567656e65726174657c693a313435393630313138353b74696d657374616d707c693a313435393630313138353b),
-('604821cbcd91ba061a1a07b9a6608e2a18609fcc', '::1', 1459637494, 0x5f5f63695f6c6173745f726567656e65726174657c693a313435393633303735383b74696d657374616d707c693a313435393633373439343b),
 ('7bf17fffecdf13ff71b3a4f78f01da80b224ae0f', '::1', 1459528507, 0x5f5f63695f6c6173745f726567656e65726174657c693a313435393532383530373b74696d657374616d707c693a313435393532383530373b),
 ('8268d2ba3141849b599d948d9e1c6615505e75b8', '::1', 1459465620, 0x5f5f63695f6c6173745f726567656e65726174657c693a313435393436353632303b74696d657374616d707c693a313435393436353632303b),
-('857162ccca707da4b5f63442303a333af166e380', '::1', 1459465255, 0x5f5f63695f6c6173745f726567656e65726174657c693a313435393435373936383b74696d657374616d707c693a313435393436343935333b6c6f67696e7c733a333a22796573223b61646d696e5f6c6f67696e7c733a333a22796573223b61646d696e5f69647c733a313a2231223b61646d696e5f6e616d657c733a31363a224d722e204d61737465722041646d696e223b747970657c733a31363a226869676865725f617574686f72697479223b7469746c657c733a353a2261646d696e223b),
-('98f4ba97cac5a4d88e76f90ee39ec9f3d610b22a', '::1', 1459869235, 0x5f5f63695f6c6173745f726567656e65726174657c693a313435393836323930333b74696d657374616d707c693a313435393836393233353b757365725f6e616d657c733a363a227075626c6963223b757365725f69647c733a313a2238223b),
-('a33f6ccd48386ace473195cfc679b4eec5a76e67', '::1', 1459614738, 0x5f5f63695f6c6173745f726567656e65726174657c693a313435393631343638303b74696d657374616d707c693a313435393631343733383b6c6f67696e7c733a333a22796573223b61646d696e5f6c6f67696e7c733a333a22796573223b61646d696e5f69647c733a313a2231223b617265615f69647c733a333a22313030223b61646d696e5f6e616d657c733a31363a224d722e204d61737465722041646d696e223b747970657c733a31363a226869676865725f617574686f72697479223b7469746c657c733a353a2261646d696e223b),
-('cf890f8bf9651e1d8c2415f54f87eb2a026cea4b', '::1', 1459711021, 0x5f5f63695f6c6173745f726567656e65726174657c693a313435393731303437303b74696d657374616d707c693a313435393731313032313b6c6f67696e7c733a333a22796573223b61646d696e5f6c6f67696e7c733a333a22796573223b61646d696e5f69647c733a313a2231223b617265615f69647c733a333a22313030223b61646d696e5f6e616d657c733a31363a224d722e204d61737465722041646d696e223b747970657c733a31363a226869676865725f617574686f72697479223b7469746c657c733a353a2261646d696e223b),
-('f03ef956c57ec326e5e7b6caec2a2998899002ed', '::1', 1459800408, 0x5f5f63695f6c6173745f726567656e65726174657c693a313435393830303131343b74696d657374616d707c693a313435393830303430383b757365725f6e616d657c733a363a227075626c6963223b757365725f69647c733a313a2238223b);
+('857162ccca707da4b5f63442303a333af166e380', '::1', 1459465255, 0x5f5f63695f6c6173745f726567656e65726174657c693a313435393435373936383b74696d657374616d707c693a313435393436343935333b6c6f67696e7c733a333a22796573223b61646d696e5f6c6f67696e7c733a333a22796573223b61646d696e5f69647c733a313a2231223b61646d696e5f6e616d657c733a31363a224d722e204d61737465722041646d696e223b747970657c733a31363a226869676865725f617574686f72697479223b7469746c657c733a353a2261646d696e223b);
 
 -- --------------------------------------------------------
 
@@ -282,7 +260,7 @@ INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `district` (
-`district_id` int(11) NOT NULL,
+  `district_id` int(11) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `in_charge` varchar(200) DEFAULT NULL,
   `description` longtext,
@@ -305,7 +283,7 @@ INSERT INTO `district` (`district_id`, `name`, `in_charge`, `description`, `peop
 --
 
 CREATE TABLE IF NOT EXISTS `division` (
-`division_id` int(11) NOT NULL,
+  `division_id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
   `description` longtext NOT NULL,
   `in_charge` varchar(200) NOT NULL,
@@ -327,7 +305,7 @@ INSERT INTO `division` (`division_id`, `name`, `description`, `in_charge`, `leng
 --
 
 CREATE TABLE IF NOT EXISTS `dustbin` (
-`dustbin_id` int(11) NOT NULL,
+  `dustbin_id` int(11) NOT NULL,
   `area_id` int(11) DEFAULT NULL,
   `employee_id` int(11) DEFAULT NULL,
   `location` varchar(200) DEFAULT NULL,
@@ -350,7 +328,7 @@ INSERT INTO `dustbin` (`dustbin_id`, `area_id`, `employee_id`, `location`, `vehi
 --
 
 CREATE TABLE IF NOT EXISTS `employee` (
-`employee_id` int(11) NOT NULL,
+  `employee_id` int(11) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `phone` varchar(200) DEFAULT NULL,
   `email` varchar(200) DEFAULT NULL,
@@ -359,7 +337,7 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `employee_type_id` int(11) DEFAULT NULL,
   `status_id` varchar(200) DEFAULT NULL,
   `payment` float DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee`
@@ -368,8 +346,7 @@ CREATE TABLE IF NOT EXISTS `employee` (
 INSERT INTO `employee` (`employee_id`, `name`, `phone`, `email`, `address`, `area_id`, `employee_type_id`, `status_id`, `payment`) VALUES
 (1, 'Azad salam', '01221332323', 'azad@gamil.com', 'dsfdfdf,fdsf,fdsff,fdsfd,111', 1, 1, '2', 12000),
 (2, 'Gil Blackwell', '+135-37-4213007', 'susetilu@yahoo.com', '<p>gdfgfgfdg</p>', 2, 1, '1', 100000),
-(3, 'Skyler Mcfarland', '+557-35-5518477', 'hizezy@hotmail.com', '<p><br></p>', 1, 1, '1', 12300),
-(4, 'Abul Korim', '01722233221', 'abul@yahoo.com', '<p>Uttor badda, Dhaka</p>', 3, 1, '1', 1200);
+(3, 'Skyler Mcfarland', '+557-35-5518477', 'hizezy@hotmail.com', '<p><br></p>', 1, 1, '1', 12300);
 
 -- --------------------------------------------------------
 
@@ -378,7 +355,7 @@ INSERT INTO `employee` (`employee_id`, `name`, `phone`, `email`, `address`, `are
 --
 
 CREATE TABLE IF NOT EXISTS `employee_type` (
-`employee_type_id` int(11) NOT NULL,
+  `employee_type_id` int(11) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `description` longtext
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
@@ -398,22 +375,21 @@ INSERT INTO `employee_type` (`employee_type_id`, `name`, `description`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `funding` (
-`funding_id` int(11) NOT NULL,
+  `funding_id` int(11) NOT NULL,
   `pollution_type_id` int(11) DEFAULT NULL,
   `title` longtext,
   `area_id` int(11) DEFAULT NULL,
   `description` longtext,
-  `remark` varchar(200) NOT NULL,
-  `time` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `remark` varchar(200) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `funding`
 --
 
-INSERT INTO `funding` (`funding_id`, `pollution_type_id`, `title`, `area_id`, `description`, `remark`, `time`) VALUES
-(1, 1, 'In alias temporibus occaecat autem eos animi', 1, '<p><br></p>', 'Running', '13/01/2012'),
-(2, 1, 'Et nostrum sed quod quia minima', 1, 'In excepteur quam sequi irure culpa distinctio Dolorum debitis eu', 'Start', '27/11/2014');
+INSERT INTO `funding` (`funding_id`, `pollution_type_id`, `title`, `area_id`, `description`, `remark`) VALUES
+(6, 1, 'In alias temporibus occaecat autem eos animi', 1, '<p><br></p>', 'Running'),
+(7, 1, 'Et nostrum sed quod quia minima', 1, 'In excepteur quam sequi irure culpa distinctio Dolorum debitis eu', 'Start');
 
 -- --------------------------------------------------------
 
@@ -422,7 +398,7 @@ INSERT INTO `funding` (`funding_id`, `pollution_type_id`, `title`, `area_id`, `d
 --
 
 CREATE TABLE IF NOT EXISTS `garbage_collector` (
-`garbage_collector_id` int(11) NOT NULL,
+  `garbage_collector_id` int(11) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `address` longtext,
   `phone` longtext,
@@ -443,7 +419,7 @@ INSERT INTO `garbage_collector` (`garbage_collector_id`, `name`, `address`, `pho
 --
 
 CREATE TABLE IF NOT EXISTS `general_settings` (
-`general_settings_id` int(11) NOT NULL,
+  `general_settings_id` int(11) NOT NULL,
   `type` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `value` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci
 ) ENGINE=MyISAM AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
@@ -505,7 +481,7 @@ INSERT INTO `general_settings` (`general_settings_id`, `type`, `value`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `higher_authority` (
-`higher_authority_id` int(11) NOT NULL,
+  `higher_authority_id` int(11) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `email` varchar(200) DEFAULT NULL,
   `password` varchar(200) DEFAULT NULL,
@@ -521,7 +497,7 @@ CREATE TABLE IF NOT EXISTS `higher_authority` (
 --
 
 CREATE TABLE IF NOT EXISTS `language` (
-`word_id` int(11) NOT NULL,
+  `word_id` int(11) NOT NULL,
   `word` longtext NOT NULL,
   `english` longtext CHARACTER SET utf8 COLLATE utf8_bin,
   `Spanish` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
@@ -529,7 +505,7 @@ CREATE TABLE IF NOT EXISTS `language` (
   `French` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `Chinese` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `Bangla` longtext
-) ENGINE=InnoDB AUTO_INCREMENT=1269 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1264 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `language`
@@ -897,8 +873,7 @@ INSERT INTO `language` (`word_id`, `word`, `english`, `Spanish`, `Arabic`, `Fren
 (359, 'full', 'Full', 'Completo', 'كامل', 'Complet', '满', NULL),
 (360, 'select_type', 'Select Type', 'Seleccionar tipo', 'حدد نوع', 'Sélectionner le type', '选择类型', NULL),
 (361, 'content', 'Content', 'Contenido', 'محتوى', 'Contenu', '内容', NULL),
-(362, 'widget', 'Widget', 'Widget', 'القطعة', 'Widget', '小工具', NULL);
-INSERT INTO `language` (`word_id`, `word`, `english`, `Spanish`, `Arabic`, `French`, `Chinese`, `Bangla`) VALUES
+(362, 'widget', 'Widget', 'Widget', 'القطعة', 'Widget', '小工具', NULL),
 (363, 'most_viewed', 'Most Viewed', 'Más Vistos', 'الأكثر مشاهدة', 'Le Plus Regardé', '最受关注', NULL),
 (364, 'not_more_than_4_columns!', 'Not More Than 4 Columns!', 'No más de 4 columnas!', 'لا يزيد على 4 أعمدة!', 'Pas plus de 4 colonnes!', '不超过4列！', NULL),
 (365, 'category_name', 'Category Name', 'Nombre De La Categoría', 'اسم التصنيف', 'Nom De Catégorie', '分类名称', NULL),
@@ -965,7 +940,8 @@ INSERT INTO `language` (`word_id`, `word`, `english`, `Spanish`, `Arabic`, `Fren
 (426, 'slider_added!', 'Slider Added!', 'Deslizador Agregado', 'المنزلق واضاف!', 'Curseur Ajouté!', '滑块增加！', NULL),
 (427, 'select_background_image', 'Select Background Image', 'Seleccione la imagen de fondo', 'اختر صورة الخلفية', 'Sélectionnez l''image de fond', '选择背景图片', NULL),
 (428, 'select_image', 'Select Image', 'Seleccionar Imagen', 'اختر صورة', 'Sélectionner l''image', '选择图片', NULL),
-(429, 'font-color', 'Font-color', 'Color de fuente', 'لون الخط', 'Couleur de police', '字体颜色', NULL),
+(429, 'font-color', 'Font-color', 'Color de fuente', 'لون الخط', 'Couleur de police', '字体颜色', NULL);
+INSERT INTO `language` (`word_id`, `word`, `english`, `Spanish`, `Arabic`, `French`, `Chinese`, `Bangla`) VALUES
 (430, 'background_color', 'Background Color', 'Color De Fondo', 'لون الخلفية', 'Couleur De Fond', '背景颜色', NULL),
 (431, 'clean', 'Clean', 'Limpio', 'نظيف', 'Propre', '清洁', NULL),
 (432, 'slider_serial_saved!', 'Slider Serial Saved!', 'Slider Guardados de serie!', 'المنزلق المسلسل المحفوظ!', 'Curseur série Saved!', '滑盖系列救了！', NULL),
@@ -1255,8 +1231,7 @@ INSERT INTO `language` (`word_id`, `word`, `english`, `Spanish`, `Arabic`, `Fren
 (716, 'payment_settings', 'Payment Settings', 'Ajustes de Pago', 'إعدادات الدفع', 'Réglages de paiement', '付款设置', NULL),
 (717, 'my_packages', 'My Packages', 'Mis Paquetes', 'بلدي الحزم', 'Mes Forfaits', '我的包', NULL),
 (718, 'registration_successful!', 'Registration Successful!', '¡Registro exitoso!', 'نجاح عملية التسجيل!', 'Inscription réussi!', '注册成功！', NULL),
-(719, 'please_check_your_email_inbox', 'Please Check Your Email Inbox', 'Por favor revise su bandeja de entrada de correo electrónico', 'يرجى التحقق من بريدك الالكتروني', 'S''il vous plaît vérifier votre boite email', '请检查您的电子邮件收件箱', NULL);
-INSERT INTO `language` (`word_id`, `word`, `english`, `Spanish`, `Arabic`, `French`, `Chinese`, `Bangla`) VALUES
+(719, 'please_check_your_email_inbox', 'Please Check Your Email Inbox', 'Por favor revise su bandeja de entrada de correo electrónico', 'يرجى التحقق من بريدك الالكتروني', 'S''il vous plaît vérifier votre boite email', '请检查您的电子邮件收件箱', NULL),
 (720, 'visit_my_homepage', 'Visit My Homepage', 'Visita Mi Página de Inicio', 'زيارتي الصفحة الرئيسية', 'Visitez ma page d''accueil', '访问我的主页', NULL),
 (721, 'next', 'Next', 'Siguiente', 'التالى', 'Suivant', '下一个', NULL),
 (722, 'previous', 'Previous', 'Anterior', 'سابق', 'Précédent', '上一页', NULL),
@@ -1390,7 +1365,8 @@ INSERT INTO `language` (`word_id`, `word`, `english`, `Spanish`, `Arabic`, `Fren
 (850, 'number_of_reporter_parts', 'Number Of Reporter Parts', NULL, NULL, NULL, NULL, NULL),
 (851, 'lets_start_to_create_your_reporter', 'Lets Start To Create Your Reporter', NULL, NULL, NULL, NULL, NULL),
 (852, 'edit_reporter', 'Edit Reporter', NULL, NULL, NULL, NULL, NULL),
-(853, 'reporter_code', 'Reporter Code', NULL, NULL, NULL, NULL, NULL),
+(853, 'reporter_code', 'Reporter Code', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `language` (`word_id`, `word`, `english`, `Spanish`, `Arabic`, `French`, `Chinese`, `Bangla`) VALUES
 (854, 'reporter_tags', 'Reporter Tags', NULL, NULL, NULL, NULL, NULL),
 (855, 'reporter_designation', 'Reporter Designation', NULL, NULL, NULL, NULL, NULL),
 (856, 'reporter_phone', 'Reporter Phone', NULL, NULL, NULL, NULL, NULL),
@@ -1800,12 +1776,7 @@ INSERT INTO `language` (`word_id`, `word`, `english`, `Spanish`, `Arabic`, `Fren
 (1260, 'garbage_collector_name', 'Garbage Collector Name', NULL, NULL, NULL, NULL, NULL),
 (1261, 'garbage_collector_phone', 'Garbage Collector Phone', NULL, NULL, NULL, NULL, NULL),
 (1262, 'garbage_collector_address', 'Garbage Collector Address', NULL, NULL, NULL, NULL, NULL),
-(1263, 'edit_garbage_collector', 'Edit Garbage Collector', NULL, NULL, NULL, NULL, NULL),
-(1264, 'law_name', 'Law Name', NULL, NULL, NULL, NULL, NULL),
-(1265, 'registers', 'Registers', NULL, NULL, NULL, NULL, NULL),
-(1266, 'inbox', 'Inbox', NULL, NULL, NULL, NULL, NULL),
-(1267, 'my_area', 'My Area', NULL, NULL, NULL, NULL, NULL),
-(1268, 'post_a_feedback', 'Post A Feedback', NULL, NULL, NULL, NULL, NULL);
+(1263, 'edit_garbage_collector', 'Edit Garbage Collector', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1814,10 +1785,8 @@ INSERT INTO `language` (`word_id`, `word`, `english`, `Spanish`, `Arabic`, `Fren
 --
 
 CREATE TABLE IF NOT EXISTS `law` (
-`law_id` int(11) NOT NULL,
-  `pollution_type_id` int(11) DEFAULT NULL,
-  `title` varchar(200) NOT NULL,
-  `time` varchar(255) DEFAULT NULL,
+  `law_id` int(11) NOT NULL,
+  `law_name` varchar(200) NOT NULL,
   `description` longtext NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
@@ -1825,9 +1794,9 @@ CREATE TABLE IF NOT EXISTS `law` (
 -- Dumping data for table `law`
 --
 
-INSERT INTO `law` (`law_id`, `pollution_type_id`, `title`, `time`, `description`) VALUES
-(1, 1, 'The Environment (Protection) Act ', '12/02/2016', 'a) co-ordination with the activities of any authority or institution in relation with the purposes of this Act; \r\nb) prevention of accidents which may cause environmental deterioration or pollution, taking security measures and laying down, and giving directions relating to, remedial measures for such accidents; \r\nc) giving advice or, as the case may be, directions to the persons concerned regarding the eco-friendly use, preservation, transport, import or export of hazardous substances or constituents thereof; \r\nd) investigating and examining information etc. relating to the protection, improvement and pollution of the environment and rendering assistance in such work to any other authority or institution; \r\ne) inspection of any places, premises, plants, machinery, manufactoring or other processes, materials or substances for the purpose of improving the environment and controlling and abating environmental pollution and giving of orders or directions to authorities or persons competent for the prevention, control and abatement of environmental pollution; \r\nf) collection, publication and dissemination of information relating to environmental pollution; \r\ng) giving advice to the Government for the avoidance of such manufactoring processes, matters and articles as may pollute the environment; \r\nh) carrying out programmes for the surveillance of the quality of drinking water and making reports and giving advice or, as the case may be, directions to all persons concerned to maintain the standard of drinking water.'),
-(2, 2, 'The Environment (Protection) Rules ', '17/01/2016', 'a) co-ordination with the activities of any authority or institution in relation with the purposes of this Act; \r\nb) prevention of accidents which may cause environmental deterioration or pollution, taking security measures and laying down, and giving directions relating to, remedial measures for such accidents; \r\nc) giving advice or, as the case may be, directions to the persons concerned regarding the eco-friendly use, preservation, transport, import or export of hazardous substances or constituents thereof; \r\nd) investigating and examining information etc. relating to the protection, improvement and pollution of the environment and rendering assistance in such work to any other authority or institution; \r\ne) inspection of any places, premises, plants, machinery, manufactoring or other processes, materials or substances for the purpose of improving the environment and controlling and abating environmental pollution and giving of orders or directions to authorities or persons competent for the prevention, control and abatement of environmental pollution; \r\nf) collection, publication and dissemination of information relating to environmental pollution; \r\ng) giving advice to the Government for the avoidance of such manufactoring processes, matters and articles as may pollute the environment; \r\nh) carrying out programmes for the surveillance of the quality of drinking water and making reports and giving advice or, as the case may be, directions to all persons concerned to maintain the standard of drinking water.');
+INSERT INTO `law` (`law_id`, `law_name`, `description`) VALUES
+(1, 'The Environment (Protection) Act ', 'a) co-ordination with the activities of any authority or institution in relation with the purposes of this Act; \r\nb) prevention of accidents which may cause environmental deterioration or pollution, taking security measures and laying down, and giving directions relating to, remedial measures for such accidents; \r\nc) giving advice or, as the case may be, directions to the persons concerned regarding the eco-friendly use, preservation, transport, import or export of hazardous substances or constituents thereof; \r\nd) investigating and examining information etc. relating to the protection, improvement and pollution of the environment and rendering assistance in such work to any other authority or institution; \r\ne) inspection of any places, premises, plants, machinery, manufactoring or other processes, materials or substances for the purpose of improving the environment and controlling and abating environmental pollution and giving of orders or directions to authorities or persons competent for the prevention, control and abatement of environmental pollution; \r\nf) collection, publication and dissemination of information relating to environmental pollution; \r\ng) giving advice to the Government for the avoidance of such manufactoring processes, matters and articles as may pollute the environment; \r\nh) carrying out programmes for the surveillance of the quality of drinking water and making reports and giving advice or, as the case may be, directions to all persons concerned to maintain the standard of drinking water.'),
+(2, 'The Environment (Protection) Rules ', 'a) co-ordination with the activities of any authority or institution in relation with the purposes of this Act; \r\nb) prevention of accidents which may cause environmental deterioration or pollution, taking security measures and laying down, and giving directions relating to, remedial measures for such accidents; \r\nc) giving advice or, as the case may be, directions to the persons concerned regarding the eco-friendly use, preservation, transport, import or export of hazardous substances or constituents thereof; \r\nd) investigating and examining information etc. relating to the protection, improvement and pollution of the environment and rendering assistance in such work to any other authority or institution; \r\ne) inspection of any places, premises, plants, machinery, manufactoring or other processes, materials or substances for the purpose of improving the environment and controlling and abating environmental pollution and giving of orders or directions to authorities or persons competent for the prevention, control and abatement of environmental pollution; \r\nf) collection, publication and dissemination of information relating to environmental pollution; \r\ng) giving advice to the Government for the avoidance of such manufactoring processes, matters and articles as may pollute the environment; \r\nh) carrying out programmes for the surveillance of the quality of drinking water and making reports and giving advice or, as the case may be, directions to all persons concerned to maintain the standard of drinking water.');
 
 -- --------------------------------------------------------
 
@@ -1836,7 +1805,7 @@ INSERT INTO `law` (`law_id`, `pollution_type_id`, `title`, `time`, `description`
 --
 
 CREATE TABLE IF NOT EXISTS `news` (
-`news_id` int(11) NOT NULL,
+  `news_id` int(11) NOT NULL,
   `title` varchar(200) NOT NULL,
   `summary` longtext NOT NULL,
   `description` longtext NOT NULL,
@@ -1866,7 +1835,7 @@ INSERT INTO `news` (`news_id`, `title`, `summary`, `description`, `date`, `admin
 --
 
 CREATE TABLE IF NOT EXISTS `noisy_point` (
-`noisy_point_id` int(11) NOT NULL,
+  `noisy_point_id` int(11) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `area_id` int(11) DEFAULT NULL,
   `noisy_point_type_id` int(11) DEFAULT NULL,
@@ -1892,9 +1861,9 @@ INSERT INTO `noisy_point` (`noisy_point_id`, `name`, `area_id`, `noisy_point_typ
 --
 
 CREATE TABLE IF NOT EXISTS `noisy_point_type` (
-`noisy_point_type_id` int(11) NOT NULL,
+  `noisy_point_type_id` int(11) NOT NULL,
   `type` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `noisy_point_type`
@@ -1926,7 +1895,7 @@ CREATE TABLE IF NOT EXISTS `poll` (
 --
 
 CREATE TABLE IF NOT EXISTS `pollution_type` (
-`pollution_type_id` int(11) NOT NULL,
+  `pollution_type_id` int(11) NOT NULL,
   `type` varchar(110) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
@@ -1943,99 +1912,24 @@ INSERT INTO `pollution_type` (`pollution_type_id`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `property`
---
-
-CREATE TABLE IF NOT EXISTS `property` (
-`property_id` int(11) NOT NULL,
-  `property_name` varchar(100) NOT NULL,
-  `division` varchar(50) NOT NULL,
-  `full_address` varchar(100) NOT NULL,
-  `bedrooms` int(11) NOT NULL,
-  `rent` int(11) NOT NULL,
-  `keywords` varchar(100) NOT NULL,
-  `available_from` date NOT NULL,
-  `owner_id` int(11) NOT NULL,
-  `detail_description` mediumtext NOT NULL,
-  `view_count` int(100) NOT NULL DEFAULT '0',
-  `avg_rating` int(11) NOT NULL DEFAULT '0',
-  `property_type` varchar(255) NOT NULL DEFAULT 'house'
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `property`
---
-
-INSERT INTO `property` (`property_id`, `property_name`, `division`, `full_address`, `bedrooms`, `rent`, `keywords`, `available_from`, `owner_id`, `detail_description`, `view_count`, `avg_rating`, `property_type`) VALUES
-(1, 'Charles Garrett', 'barisal', 'Numquam occaecat iure et officia ipsum cum ut nemo consectetur exercitation et quae dolor', 2500, 2500, 'Inventore voluptatem Non consequatur assumenda aut et facere', '2000-03-31', 1, '', 18, 7, 'house'),
-(2, 'sevenhill', 'rangpur', 'Minim quas rerum pariatur Porro', 2, 20000, 'Ad maxime minim maiores mollitia cillum consequatur Dolor ipsum nihil quis perspiciatis perferendis ', '2007-01-01', 1, 'A nice house on the hilly regions. Built with care...', 53, 6, 'apartment'),
-(3, 'Eleanor Hancock', 'rajshahi', 'Dolores et occaecat voluptatem quis aspernatur rerum aut similique eum eaque', 0, 0, 'Libero necessitatibus veniam incididunt nisi similique et', '1988-03-11', 1, 'Inventore voluptate nostrud aliquam in quam dignissimos autem doloribus vitae quo minima qui.', 20, 0, 'house'),
-(4, 'Shaeleigh Hurst', 'barisal', 'Odio reprehenderit nobis eiusmod amet ipsa minim consequatur Laboriosam dolorem aut ipsum ea quam', 0, 0, 'Officiis nobis qui provident minim qui', '2005-08-03', 3, 'Sed hic veniam, dolore magna adipisci velit, corporis quisquam recusandae. Voluptas.', 1, 0, 'villa'),
-(5, 'Hector Miranda', 'chittagong', 'Reprehenderit labore eaque repellendus Natus expedita mollitia at sit velit natus qui iusto dolore c', 0, 0, 'Veritatis odio animi aut velit quis consequatur hic et corporis et non voluptatem alias et consectet', '2010-06-10', 1, 'Tempore, animi, tempora est asperiores asperiores eu aliquip deleniti soluta et sint qui rem beatae ea tenetur enim asperiores enim.', 10, 8, 'house'),
-(6, 'Jamalia Obrien', 'rajshahi', 'Eum molestias dignissimos porro lorem est consequatur Esse dolor laborum voluptatem id laudantium et', 0, 0, 'Sit molestias alias aliquid est qui ut quaerat natus voluptates assumenda non consequat Perferendis', '2012-12-24', 1, 'Velit repudiandae exercitationem et nulla et assumenda dolorem cumque anim excepturi.', 5, 0, 'other'),
-(7, 'August Wolf', 'rangpur', 'Magni explicabo Commodi omnis blanditiis reprehenderit quae doloribus et voluptatum sunt sed quod do', 3, 91, 'Aperiam rerum laboris ipsum ad facere occaecat sit voluptatem Voluptatem enim sed totam Nam', '1980-01-08', 4, 'Laboris sint, error quos sunt deserunt sit, ea excepturi amet, sit.', 0, 0, 'house'),
-(8, 'August Wolf', 'rangpur', 'Magni explicabo Commodi omnis blanditiis reprehenderit quae doloribus et voluptatum sunt sed quod do', 3, 91, 'Aperiam rerum laboris ipsum ad facere occaecat sit voluptatem Voluptatem enim sed totam Nam', '1980-01-08', 4, 'Laboris sint, error quos sunt deserunt sit, ea excepturi amet, sit.', 0, 0, 'house'),
-(9, 'Jin Farmer', 'rajshahi', 'Dolor eos quis voluptatum vel recusandae Omnis sed obcaecati cupidatat mollit minim facere doloribus', 12, 67, 'Est voluptatum voluptatum ex rerum iusto esse hic explicabo Sunt rem eos ad', '1997-04-17', 4, 'In non adipisicing ducimus, non eiusmod tempora voluptatem non saepe est quaerat ut quam.', 0, 0, 'house'),
-(10, 'Colleen Alvarez', 'rajshahi', 'Voluptatem tenetur nulla reprehenderit inventore laudantium proident excepteur quo nulla sit earum o', 0, 2, 'Quos exercitationem est obcaecati vel et eos dolore aut tempora pariatur Accusamus dignissimos labor', '2007-05-09', 4, 'Sit, Nam minim sit, rem amet, magna qui non quam velit consequatur? Sed nostrud.', 0, 0, 'house'),
-(11, 'Nicholas Page', 'barisal', 'Ut eum sed aliquam delectus sunt repellendus Laborum Facere', 2, 1000, 'Eaque qui nisi dolores sint sed velit exercitation voluptatibus dolore quia laboris nemo voluptas', '2000-09-21', 4, 'Eos, laudantium, molestias autem cumque nesciunt, aut ullamco aut nulla unde sunt ad et eos architecto tempora quibusdam temporibus.', 1, 0, 'house'),
-(12, 'Caleb Harvey', 'barisal', 'Nisi illo nulla repudiandae consectetur voluptatem Laborum deserunt sit autem minim tenetur exercita', 3, 34000, 'Non consectetur amet deleniti recusandae Dolor fugiat ea aperiam', '2013-01-17', 4, 'Expedita voluptate nihil quo labore eos, quos velit explicabo. Aut consequat. Ratione labore et.', 0, 0, 'villa'),
-(13, 'Hakeem James', 'mymensingh', 'Sint delectus voluptatum nostrum vel laborum Do cumque doloremque temporibus aut in saepe autem quis', 4, 34555, 'Pariatur Nemo totam repellendus Ut', '1996-03-26', 4, 'Qui ut tempore, culpa, sit, hic cum sint laborum. Rerum molestiae dolorem laudantium, iste sapiente illum, molestiae ab.', 0, 0, 'house'),
-(14, 'Hakeem James', 'mymensingh', 'Sint delectus voluptatum nostrum vel laborum Do cumque doloremque temporibus aut in saepe autem quis', 4, 34555, 'Pariatur Nemo totam repellendus Ut', '1996-03-26', 4, 'Qui ut tempore, culpa, sit, hic cum sint laborum. Rerum molestiae dolorem laudantium, iste sapiente illum, molestiae ab.', 0, 0, 'house'),
-(15, 'George Castaneda', 'sylhet', 'Dolores et voluptatem ea quam consequuntur possimus sit officia totam', 4, 234000, 'Nostrum ea perferendis dolorem cumque velit proident', '1988-02-26', 4, 'Libero est, quidem accusantium ad facere non et alias impedit, iure eos.', 137, 7, 'house'),
-(16, 'George Castaneda', 'sylhet', 'Dolores et voluptatem ea quam consequuntur possimus sit officia totam', 4, 234000, 'Nostrum ea perferendis dolorem cumque velit proident', '1988-02-26', 4, 'Libero est, quidem accusantium ad facere non et alias impedit, iure eos.', 0, 0, 'house'),
-(17, 'George Castaneda', 'sylhet', 'Dolores et voluptatem ea quam consequuntur possimus sit officia totam', 4, 234000, 'Nostrum ea perferendis dolorem cumque velit proident', '1988-02-26', 4, 'Libero est, quidem accusantium ad facere non et alias impedit, iure eos.', 0, 0, 'house'),
-(18, 'Alfonso Sawyer', 'dhaka', 'In nemo qui incidunt omnis velit quas laborum', 3, 45678, 'Adipisicing non ea pariatur Obcaecati culpa commodi rerum ea in eos nesciunt sit doloremque providen', '2015-01-08', 4, 'Optio, corporis dolore exercitationem irure dolore Nam a ratione dolore commodi mollitia voluptatum voluptatum.', 3, 7, 'other'),
-(19, 'Amelia Lindsey', 'rajshahi', 'Quisquam quia illo est dolorem reiciendis minus atque dolore libero sed id irure', 2, 10000, 'Id nostrud nisi a facere nobis ea ea', '1999-03-10', 2, 'Saepe aspernatur aut dolor quia culpa, ea laboriosam, iure obcaecati eos pariatur. Nostrud et.', 32, 9, 'house'),
-(20, 'Ulric Roy', 'dhaka', 'Anim quas tempor eveniet nihil excepturi illo in voluptates', 2, 10000, 'Suscipit dolore quis doloribus quidem facilis laborum Ex ea doloremque voluptate non', '1991-07-05', 2, 'Dolor exercitation veritatis omnis duis elit, omnis soluta odit rem aut inventore quaerat ipsum.', 1, 0, 'studio_apartment'),
-(21, 'Britanney Cardenas', 'mymensingh', 'Tempora dolor natus debitis enim esse', 3, 3000, 'Anim autem duis nihil unde eiusmod distinctio Consequatur Minima sed explicabo Reiciendis ipsum exce', '1989-07-20', 2, 'Delectus, commodo culpa, optio, nulla qui aut aliquid aperiam ex non consequat. Quod laborum vitae doloribus consectetur, et distinctio.', 2, 7, 'other');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `public`
 --
 
 CREATE TABLE IF NOT EXISTS `public` (
-`public_id` int(11) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
+  `public_id` int(11) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `n_id` varchar(1100) DEFAULT NULL,
   `age` int(11) DEFAULT NULL,
   `area_id` int(11) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
   `password` varchar(200) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `public`
 --
 
-INSERT INTO `public` (`public_id`, `email`, `name`, `n_id`, `age`, `area_id`, `phone`, `password`) VALUES
-(1, '', 'Jasir chowdhury', '214748364712321', 23, 1, '2147483647', '1234'),
-(2, 'qetaqatyga@hotmail.com', 'Jana Joyner', '1232333233', NULL, 2, '01867775535', '1234'),
-(3, 'pimoqocyr@hotmail.com', 'Lesley Love', '102211332202112', 26, 2, '01723232388', '1234'),
-(4, 'tewuqajov@hotmail.com', 'Ciaran Matthews', '123131300022', 20, 3, '01912332233', '1234'),
-(5, 'muly@gmail.com', 'Emerson Palmer', '12121212121212', 27, 1, '01872333222', '1234'),
-(6, 'pygasi@hotmail.com', 'Eaton Moss', '21301301030123', 28, 3, '01882882222', '1234'),
-(7, 'zufy@gmail.com', 'Jack Cleveland', '21212333232323', 29, 3, '01722233223', '1234'),
-(8, 'public@yahoo.com', 'public', '123212344323', 30, 3, '01876444554', '1234');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `public_comment`
---
-
-CREATE TABLE IF NOT EXISTS `public_comment` (
-`public_comment_id` int(11) NOT NULL,
-  `law_id` int(11) DEFAULT NULL,
-  `awareness_id` int(11) DEFAULT NULL,
-  `funding_id` int(11) DEFAULT NULL,
-  `blog_id` int(11) DEFAULT NULL,
-  `pollution_type_id` int(11) DEFAULT NULL,
-  `public_id` int(11) DEFAULT NULL,
-  `comment` longtext
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `public` (`public_id`, `name`, `n_id`, `age`, `area_id`, `password`) VALUES
+(1, 'Jasir chowdhury', '214748364712321', 23, 1, '');
 
 -- --------------------------------------------------------
 
@@ -2044,7 +1938,7 @@ CREATE TABLE IF NOT EXISTS `public_comment` (
 --
 
 CREATE TABLE IF NOT EXISTS `punishment` (
-`punishment_id` int(11) NOT NULL,
+  `punishment_id` int(11) NOT NULL,
   `pollution_type_id` int(11) NOT NULL,
   `area_id` int(11) NOT NULL,
   `employee_id` int(11) NOT NULL,
@@ -2068,7 +1962,7 @@ INSERT INTO `punishment` (`punishment_id`, `pollution_type_id`, `area_id`, `empl
 --
 
 CREATE TABLE IF NOT EXISTS `punishment_type` (
-`punishment_type_id` int(11) NOT NULL,
+  `punishment_type_id` int(11) NOT NULL,
   `type` varchar(200) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
@@ -2087,7 +1981,7 @@ INSERT INTO `punishment_type` (`punishment_type_id`, `type`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `research` (
-`research_id` int(11) NOT NULL,
+  `research_id` int(11) NOT NULL,
   `filed` varchar(200) DEFAULT NULL,
   `description` longtext,
   `status` varchar(200) DEFAULT NULL,
@@ -2101,30 +1995,23 @@ CREATE TABLE IF NOT EXISTS `research` (
 --
 
 CREATE TABLE IF NOT EXISTS `review` (
-`review_id` int(11) NOT NULL,
+  `review_id` int(11) NOT NULL,
   `pollution_type_id` int(11) DEFAULT NULL,
   `description` longtext,
   `solution` longtext,
   `area_id` int(11) DEFAULT NULL,
   `employee_id` int(11) DEFAULT NULL,
-  `public_id` int(11) DEFAULT NULL,
   `remark` varchar(200) DEFAULT NULL,
   `title` varchar(200) NOT NULL,
-  `date` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `date` varchar(200) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `review`
 --
 
-INSERT INTO `review` (`review_id`, `pollution_type_id`, `description`, `solution`, `area_id`, `employee_id`, `public_id`, `remark`, `title`, `date`) VALUES
-(1, 1, 'Hackathon are globally recognized marathon coding events. Hackathon is a gathering where programmers collaboratively code in an extreme manner over a short period of time.Developers, innovators and designers join hackathons in teams of 5 people generally to build innovative prototype to solve some given problems sets. Hackathons are ultimate exhibition of skills for developers.', 'Hackathon are globally recognized marathon coding events. Hackathon is a gathering where programmers collaboratively code in an extreme manner over a short period of time.Developers, innovators and designers join hackathons in teams of 5 people generally to build innovative prototype to solve some given problems sets. Hackathons are ultimate exhibition of skills for developers.', 3, 1, 1, 'Done', 'Water Pllution in dhamrai', '0000-00-00'),
-(2, 0, 'Libero adipisci dolore officiis blanditiis aperiam nisi non voluptatem neque corporis omnis dolores voluptatem quia.', NULL, 2, NULL, 8, NULL, 'Sunt proident sunt deserunt dolorum et distinctio Quas aliquam ad laboris aut sit eos ut non sit culpa', '0000-00-00'),
-(3, 1, 'Ab voluptatum do pariatur? Sit, quidem fugiat corrupti, facilis molestiae sit, anim.', NULL, 3, NULL, 8, NULL, 'Non fugiat non et qui sapiente eius incidunt dolore voluptatum neque beatae sunt maiores', '0000-00-00'),
-(4, 4, 'Aut sed sed enim eligendi quos consequatur? Omnis est rerum earum et vel in magni labore autem sed voluptate.', NULL, 3, NULL, 8, NULL, 'Dignissimos blanditiis provident nesciunt nesciunt suscipit', 'Tue Apr, 2016 - 09:47 pm'),
-(5, 4, 'Vel culpa, cupiditate dolorem deserunt et sed in adipisci dolor inventore.', NULL, 3, NULL, 8, NULL, 'Eligendi voluptates sed hic tenetur consectetur eligendi aliquam ullam nisi architecto in veniam eius distinctio Enim rem aut', '05 Apr, 2016 - 09:48 pm'),
-(6, 1, 'Similique ratione mollit proident, doloremque mollitia est quia esse amet, nostrum voluptatem vel sequi tempor deleniti magna mollitia id.', NULL, 2, NULL, 8, NULL, 'Cillum quis laudantium illo tempor exercitationem', '05 Apr, 2016 - 09:49 pm'),
-(7, 3, 'Ipsa, magna quia sunt, accusamus quasi at velit, aliqua. Dolore sit et voluptatem, ducimus, sed illum, ipsam in.', NULL, 2, NULL, 8, NULL, 'Test Feedback', '05 Apr, 2016 - 09:50 pm');
+INSERT INTO `review` (`review_id`, `pollution_type_id`, `description`, `solution`, `area_id`, `employee_id`, `remark`, `title`, `date`) VALUES
+(1, 1, 'Hackathon are globally recognized marathon coding events. Hackathon is a gathering where programmers collaboratively code in an extreme manner over a short period of time.Developers, innovators and designers join hackathons in teams of 5 people generally to build innovative prototype to solve some given problems sets. Hackathons are ultimate exhibition of skills for developers.', 'Hackathon are globally recognized marathon coding events. Hackathon is a gathering where programmers collaboratively code in an extreme manner over a short period of time.Developers, innovators and designers join hackathons in teams of 5 people generally to build innovative prototype to solve some given problems sets. Hackathons are ultimate exhibition of skills for developers.', 1, 0, 'Done', 'Water Pllution in dhamrai', '12/03/2015');
 
 -- --------------------------------------------------------
 
@@ -2133,7 +2020,7 @@ INSERT INTO `review` (`review_id`, `pollution_type_id`, `description`, `solution
 --
 
 CREATE TABLE IF NOT EXISTS `review_type` (
-`review_type_id` int(11) NOT NULL,
+  `review_type_id` int(11) NOT NULL,
   `type` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -2144,7 +2031,7 @@ CREATE TABLE IF NOT EXISTS `review_type` (
 --
 
 CREATE TABLE IF NOT EXISTS `role` (
-`role_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `permission` varchar(100) DEFAULT NULL,
   `description` longtext
@@ -2167,7 +2054,7 @@ INSERT INTO `role` (`role_id`, `name`, `permission`, `description`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `route` (
-`route_id` int(11) NOT NULL,
+  `route_id` int(11) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `area_id` int(11) NOT NULL,
   `latitude` varchar(200) NOT NULL,
@@ -2189,7 +2076,7 @@ INSERT INTO `route` (`route_id`, `name`, `area_id`, `latitude`, `longitude`) VAL
 --
 
 CREATE TABLE IF NOT EXISTS `speciality` (
-`speciality_id` int(11) NOT NULL,
+  `speciality_id` int(11) NOT NULL,
   `title` varchar(200) NOT NULL,
   `position` varchar(200) NOT NULL,
   `codename` varchar(50) DEFAULT NULL
@@ -2212,7 +2099,7 @@ INSERT INTO `speciality` (`speciality_id`, `title`, `position`, `codename`) VALU
 --
 
 CREATE TABLE IF NOT EXISTS `status` (
-`status_id` int(11) NOT NULL,
+  `status_id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
@@ -2231,7 +2118,7 @@ INSERT INTO `status` (`status_id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `subscribe` (
-`subscribe_id` int(11) NOT NULL,
+  `subscribe_id` int(11) NOT NULL,
   `email` varchar(600) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -2242,7 +2129,7 @@ CREATE TABLE IF NOT EXISTS `subscribe` (
 --
 
 CREATE TABLE IF NOT EXISTS `ui_settings` (
-`ui_settings_id` int(11) NOT NULL,
+  `ui_settings_id` int(11) NOT NULL,
   `type` longtext,
   `value` longtext
 ) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
@@ -2275,7 +2162,7 @@ INSERT INTO `ui_settings` (`ui_settings_id`, `type`, `value`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `union` (
-`union_id` int(11) NOT NULL,
+  `union_id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
   `description` longtext NOT NULL,
   `chairman` varchar(200) NOT NULL,
@@ -2298,7 +2185,7 @@ INSERT INTO `union` (`union_id`, `name`, `description`, `chairman`, `length`, `p
 --
 
 CREATE TABLE IF NOT EXISTS `upazila` (
-`upazila_id` int(11) NOT NULL,
+  `upazila_id` int(11) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `description` longtext,
   `in_charge` varchar(200) DEFAULT NULL,
@@ -2321,7 +2208,7 @@ INSERT INTO `upazila` (`upazila_id`, `name`, `description`, `in_charge`, `length
 --
 
 CREATE TABLE IF NOT EXISTS `useful_link` (
-`useful_link_id` int(11) NOT NULL,
+  `useful_link_id` int(11) NOT NULL,
   `title` varchar(200) NOT NULL,
   `summary` longtext NOT NULL,
   `link` longtext NOT NULL
@@ -2342,7 +2229,7 @@ INSERT INTO `useful_link` (`useful_link_id`, `title`, `summary`, `link`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-`user_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `username` longtext,
   `surname` varchar(100) DEFAULT NULL,
   `email` longtext,
@@ -2370,7 +2257,7 @@ INSERT INTO `user` (`user_id`, `username`, `surname`, `email`, `phone`, `address
 --
 
 CREATE TABLE IF NOT EXISTS `vehicle` (
-`vehicle_id` int(11) NOT NULL,
+  `vehicle_id` int(11) NOT NULL,
   `name` varchar(200) DEFAULT NULL,
   `employee_id` int(11) DEFAULT NULL,
   `route_id` varchar(110) DEFAULT NULL,
@@ -2392,7 +2279,7 @@ INSERT INTO `vehicle` (`vehicle_id`, `name`, `employee_id`, `route_id`, `status_
 --
 
 CREATE TABLE IF NOT EXISTS `water_pollution` (
-`water_pollution_id` int(11) NOT NULL,
+  `water_pollution_id` int(11) NOT NULL,
   `water_pollution_type_id` int(11) DEFAULT NULL,
   `area_id` int(11) DEFAULT NULL,
   `employee_id` int(11) DEFAULT NULL,
@@ -2417,9 +2304,9 @@ INSERT INTO `water_pollution` (`water_pollution_id`, `water_pollution_type_id`, 
 --
 
 CREATE TABLE IF NOT EXISTS `water_pollution_type` (
-`water_pollution_type_id` int(11) NOT NULL,
+  `water_pollution_type_id` int(11) NOT NULL,
   `type` varchar(200) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `water_pollution_type`
@@ -2436,283 +2323,272 @@ INSERT INTO `water_pollution_type` (`water_pollution_type_id`, `type`) VALUES
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
- ADD PRIMARY KEY (`admin_id`);
+  ADD PRIMARY KEY (`admin_id`);
 
 --
 -- Indexes for table `air_pollution`
 --
 ALTER TABLE `air_pollution`
- ADD PRIMARY KEY (`air_pollution_id`);
+  ADD PRIMARY KEY (`air_pollution_id`);
 
 --
 -- Indexes for table `air_pollution_type`
 --
 ALTER TABLE `air_pollution_type`
- ADD PRIMARY KEY (`air_pollution_type_id`);
+  ADD PRIMARY KEY (`air_pollution_type_id`);
 
 --
 -- Indexes for table `area`
 --
 ALTER TABLE `area`
- ADD PRIMARY KEY (`area_id`);
+  ADD PRIMARY KEY (`area_id`);
 
 --
 -- Indexes for table `authority`
 --
 ALTER TABLE `authority`
- ADD PRIMARY KEY (`authority_id`);
+  ADD PRIMARY KEY (`authority_id`);
 
 --
 -- Indexes for table `awareness`
 --
 ALTER TABLE `awareness`
- ADD PRIMARY KEY (`awareness_id`);
+  ADD PRIMARY KEY (`awareness_id`);
 
 --
 -- Indexes for table `awareness_type`
 --
 ALTER TABLE `awareness_type`
- ADD PRIMARY KEY (`awareness_type_id`);
+  ADD PRIMARY KEY (`awareness_type_id`);
 
 --
 -- Indexes for table `blog`
 --
 ALTER TABLE `blog`
- ADD PRIMARY KEY (`blog_id`);
+  ADD PRIMARY KEY (`blog_id`);
 
 --
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
- ADD PRIMARY KEY (`category_id`);
+  ADD PRIMARY KEY (`category_id`);
 
 --
 -- Indexes for table `ci_sessions`
 --
 ALTER TABLE `ci_sessions`
- ADD PRIMARY KEY (`id`), ADD KEY `ci_sessions_timestamp` (`timestamp`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ci_sessions_timestamp` (`timestamp`);
 
 --
 -- Indexes for table `district`
 --
 ALTER TABLE `district`
- ADD PRIMARY KEY (`district_id`);
+  ADD PRIMARY KEY (`district_id`);
 
 --
 -- Indexes for table `division`
 --
 ALTER TABLE `division`
- ADD PRIMARY KEY (`division_id`);
+  ADD PRIMARY KEY (`division_id`);
 
 --
 -- Indexes for table `dustbin`
 --
 ALTER TABLE `dustbin`
- ADD PRIMARY KEY (`dustbin_id`);
+  ADD PRIMARY KEY (`dustbin_id`);
 
 --
 -- Indexes for table `employee`
 --
 ALTER TABLE `employee`
- ADD PRIMARY KEY (`employee_id`);
+  ADD PRIMARY KEY (`employee_id`);
 
 --
 -- Indexes for table `employee_type`
 --
 ALTER TABLE `employee_type`
- ADD PRIMARY KEY (`employee_type_id`);
+  ADD PRIMARY KEY (`employee_type_id`);
 
 --
 -- Indexes for table `funding`
 --
 ALTER TABLE `funding`
- ADD PRIMARY KEY (`funding_id`);
+  ADD PRIMARY KEY (`funding_id`);
 
 --
 -- Indexes for table `garbage_collector`
 --
 ALTER TABLE `garbage_collector`
- ADD PRIMARY KEY (`garbage_collector_id`);
+  ADD PRIMARY KEY (`garbage_collector_id`);
 
 --
 -- Indexes for table `general_settings`
 --
 ALTER TABLE `general_settings`
- ADD PRIMARY KEY (`general_settings_id`);
+  ADD PRIMARY KEY (`general_settings_id`);
 
 --
 -- Indexes for table `higher_authority`
 --
 ALTER TABLE `higher_authority`
- ADD PRIMARY KEY (`higher_authority_id`);
+  ADD PRIMARY KEY (`higher_authority_id`);
 
 --
 -- Indexes for table `language`
 --
 ALTER TABLE `language`
- ADD PRIMARY KEY (`word_id`);
+  ADD PRIMARY KEY (`word_id`);
 
 --
 -- Indexes for table `law`
 --
 ALTER TABLE `law`
- ADD PRIMARY KEY (`law_id`);
+  ADD PRIMARY KEY (`law_id`);
 
 --
 -- Indexes for table `news`
 --
 ALTER TABLE `news`
- ADD PRIMARY KEY (`news_id`);
+  ADD PRIMARY KEY (`news_id`);
 
 --
 -- Indexes for table `noisy_point`
 --
 ALTER TABLE `noisy_point`
- ADD PRIMARY KEY (`noisy_point_id`);
+  ADD PRIMARY KEY (`noisy_point_id`);
 
 --
 -- Indexes for table `noisy_point_type`
 --
 ALTER TABLE `noisy_point_type`
- ADD PRIMARY KEY (`noisy_point_type_id`);
+  ADD PRIMARY KEY (`noisy_point_type_id`);
 
 --
 -- Indexes for table `poll`
 --
 ALTER TABLE `poll`
- ADD PRIMARY KEY (`poll_id`);
+  ADD PRIMARY KEY (`poll_id`);
 
 --
 -- Indexes for table `pollution_type`
 --
 ALTER TABLE `pollution_type`
- ADD PRIMARY KEY (`pollution_type_id`);
-
---
--- Indexes for table `property`
---
-ALTER TABLE `property`
- ADD PRIMARY KEY (`property_id`);
+  ADD PRIMARY KEY (`pollution_type_id`);
 
 --
 -- Indexes for table `public`
 --
 ALTER TABLE `public`
- ADD PRIMARY KEY (`public_id`);
-
---
--- Indexes for table `public_comment`
---
-ALTER TABLE `public_comment`
- ADD PRIMARY KEY (`public_comment_id`);
+  ADD PRIMARY KEY (`public_id`);
 
 --
 -- Indexes for table `punishment`
 --
 ALTER TABLE `punishment`
- ADD PRIMARY KEY (`punishment_id`);
+  ADD PRIMARY KEY (`punishment_id`);
 
 --
 -- Indexes for table `punishment_type`
 --
 ALTER TABLE `punishment_type`
- ADD PRIMARY KEY (`punishment_type_id`);
+  ADD PRIMARY KEY (`punishment_type_id`);
 
 --
 -- Indexes for table `research`
 --
 ALTER TABLE `research`
- ADD PRIMARY KEY (`research_id`);
+  ADD PRIMARY KEY (`research_id`);
 
 --
 -- Indexes for table `review`
 --
 ALTER TABLE `review`
- ADD PRIMARY KEY (`review_id`);
+  ADD PRIMARY KEY (`review_id`);
 
 --
 -- Indexes for table `review_type`
 --
 ALTER TABLE `review_type`
- ADD PRIMARY KEY (`review_type_id`);
+  ADD PRIMARY KEY (`review_type_id`);
 
 --
 -- Indexes for table `role`
 --
 ALTER TABLE `role`
- ADD PRIMARY KEY (`role_id`);
+  ADD PRIMARY KEY (`role_id`);
 
 --
 -- Indexes for table `route`
 --
 ALTER TABLE `route`
- ADD PRIMARY KEY (`route_id`);
+  ADD PRIMARY KEY (`route_id`);
 
 --
 -- Indexes for table `speciality`
 --
 ALTER TABLE `speciality`
- ADD PRIMARY KEY (`speciality_id`);
+  ADD PRIMARY KEY (`speciality_id`);
 
 --
 -- Indexes for table `status`
 --
 ALTER TABLE `status`
- ADD PRIMARY KEY (`status_id`);
+  ADD PRIMARY KEY (`status_id`);
 
 --
 -- Indexes for table `subscribe`
 --
 ALTER TABLE `subscribe`
- ADD PRIMARY KEY (`subscribe_id`);
+  ADD PRIMARY KEY (`subscribe_id`);
 
 --
 -- Indexes for table `ui_settings`
 --
 ALTER TABLE `ui_settings`
- ADD PRIMARY KEY (`ui_settings_id`);
+  ADD PRIMARY KEY (`ui_settings_id`);
 
 --
 -- Indexes for table `union`
 --
 ALTER TABLE `union`
- ADD PRIMARY KEY (`union_id`);
+  ADD PRIMARY KEY (`union_id`);
 
 --
 -- Indexes for table `upazila`
 --
 ALTER TABLE `upazila`
- ADD PRIMARY KEY (`upazila_id`);
+  ADD PRIMARY KEY (`upazila_id`);
 
 --
 -- Indexes for table `useful_link`
 --
 ALTER TABLE `useful_link`
- ADD PRIMARY KEY (`useful_link_id`);
+  ADD PRIMARY KEY (`useful_link_id`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
- ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- Indexes for table `vehicle`
 --
 ALTER TABLE `vehicle`
- ADD PRIMARY KEY (`vehicle_id`);
+  ADD PRIMARY KEY (`vehicle_id`);
 
 --
 -- Indexes for table `water_pollution`
 --
 ALTER TABLE `water_pollution`
- ADD PRIMARY KEY (`water_pollution_id`);
+  ADD PRIMARY KEY (`water_pollution_id`);
 
 --
 -- Indexes for table `water_pollution_type`
 --
 ALTER TABLE `water_pollution_type`
- ADD PRIMARY KEY (`water_pollution_type_id`);
+  ADD PRIMARY KEY (`water_pollution_type_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -2722,227 +2598,217 @@ ALTER TABLE `water_pollution_type`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `air_pollution`
 --
 ALTER TABLE `air_pollution`
-MODIFY `air_pollution_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `air_pollution_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `air_pollution_type`
 --
 ALTER TABLE `air_pollution_type`
-MODIFY `air_pollution_type_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `air_pollution_type_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `area`
 --
 ALTER TABLE `area`
-MODIFY `area_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `area_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `authority`
 --
 ALTER TABLE `authority`
-MODIFY `authority_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `authority_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `awareness`
 --
 ALTER TABLE `awareness`
-MODIFY `awareness_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `awareness_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `awareness_type`
 --
 ALTER TABLE `awareness_type`
-MODIFY `awareness_type_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `awareness_type_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `blog`
 --
 ALTER TABLE `blog`
-MODIFY `blog_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `blog_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `district`
 --
 ALTER TABLE `district`
-MODIFY `district_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `district_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `division`
 --
 ALTER TABLE `division`
-MODIFY `division_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `division_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `dustbin`
 --
 ALTER TABLE `dustbin`
-MODIFY `dustbin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `dustbin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `employee_type`
 --
 ALTER TABLE `employee_type`
-MODIFY `employee_type_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `employee_type_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `funding`
 --
 ALTER TABLE `funding`
-MODIFY `funding_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `funding_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `garbage_collector`
 --
 ALTER TABLE `garbage_collector`
-MODIFY `garbage_collector_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `garbage_collector_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `general_settings`
 --
 ALTER TABLE `general_settings`
-MODIFY `general_settings_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=63;
+  MODIFY `general_settings_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=63;
 --
 -- AUTO_INCREMENT for table `higher_authority`
 --
 ALTER TABLE `higher_authority`
-MODIFY `higher_authority_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `higher_authority_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
-MODIFY `word_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1269;
+  MODIFY `word_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1264;
 --
 -- AUTO_INCREMENT for table `law`
 --
 ALTER TABLE `law`
-MODIFY `law_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `law_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `noisy_point`
 --
 ALTER TABLE `noisy_point`
-MODIFY `noisy_point_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `noisy_point_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `noisy_point_type`
 --
 ALTER TABLE `noisy_point_type`
-MODIFY `noisy_point_type_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `noisy_point_type_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `pollution_type`
 --
 ALTER TABLE `pollution_type`
-MODIFY `pollution_type_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `property`
---
-ALTER TABLE `property`
-MODIFY `property_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+  MODIFY `pollution_type_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `public`
 --
 ALTER TABLE `public`
-MODIFY `public_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `public_comment`
---
-ALTER TABLE `public_comment`
-MODIFY `public_comment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `public_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `punishment`
 --
 ALTER TABLE `punishment`
-MODIFY `punishment_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `punishment_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `punishment_type`
 --
 ALTER TABLE `punishment_type`
-MODIFY `punishment_type_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `punishment_type_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `research`
 --
 ALTER TABLE `research`
-MODIFY `research_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `research_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `review_type`
 --
 ALTER TABLE `review_type`
-MODIFY `review_type_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `review_type_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `route`
 --
 ALTER TABLE `route`
-MODIFY `route_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `route_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `speciality`
 --
 ALTER TABLE `speciality`
-MODIFY `speciality_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `speciality_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
-MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `subscribe`
 --
 ALTER TABLE `subscribe`
-MODIFY `subscribe_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `subscribe_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `ui_settings`
 --
 ALTER TABLE `ui_settings`
-MODIFY `ui_settings_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `ui_settings_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `union`
 --
 ALTER TABLE `union`
-MODIFY `union_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `union_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `upazila`
 --
 ALTER TABLE `upazila`
-MODIFY `upazila_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `upazila_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `useful_link`
 --
 ALTER TABLE `useful_link`
-MODIFY `useful_link_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `useful_link_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `vehicle`
 --
 ALTER TABLE `vehicle`
-MODIFY `vehicle_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `vehicle_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `water_pollution`
 --
 ALTER TABLE `water_pollution`
-MODIFY `water_pollution_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `water_pollution_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `water_pollution_type`
 --
 ALTER TABLE `water_pollution_type`
-MODIFY `water_pollution_type_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `water_pollution_type_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

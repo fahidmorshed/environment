@@ -5,20 +5,14 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-8 col-xs-8">
-						
-						<div class="topbar-time"><strong><a href="<?php echo base_url();?>index.php/homeC">Welcome Guest to E-City</a></strong></div>
+						<div class="topbar-time"><strong>Welcome to Online Rental Service</strong></div>
 						<div class="topbar-toggler"><span class="fa fa-angle-down"></span></div>
 						<ul class="topbar-list topbar-menu">
 							
 							<li><a href="#">Contact</a></li>
 							<li><a href="#">About Us</a></li>
-							
-
-
-							<li><strong><a  href="<?php echo base_url();?>index.php/loginC/register" style="color: LightSeaGreen">Register</a></strong></li>
-							<li><strong><a class="cd-signin" href="<?php echo base_url();?>index.php/loginC" style="color: DarkOliveGreen ">Login</a></strong></li>
-
-							
+							<li><strong><a  href="<?php echo base_url();?>index.php/home/registers">Register</a></strong></li>
+							<li><strong><a class="cd-signin" href="<?php echo base_url();?>index.php/home/login">Login</a></strong></li>
 						</ul>
 					</div>
 
@@ -27,32 +21,6 @@
 			</div><!--/end container-->
 		</div>
 		<!-- End Topbar blog -->
-
-
-		<?php
-					$homeA = "";
-					$searchA = "";
-					$propertyA = "";
-					$loginA = "";
-					$reviewA = "";
-					$registerA = "";
-					if($page_name=='home'){
-						$homeA = "active";
-					}
-					else if($page_name=='search'){
-						$searchA = "active";
-					}
-					else if($page_name=='login'){
-						$loginA = "active";
-					}
-					else if($page_name=='registers'){
-						$registerA = "active";
-					}
-					else if($page_name=='recent_reviews'){
-						$reviewA = "active";
-					}
-					
-				?>
 
 		<!-- Navbar -->
 		<div class="navbar mega-menu" role="navigation">
@@ -67,9 +35,9 @@
 					</button>
 
 					<div class="navbar-brand">
-						<a href="<?php echo base_url();?>index.php/homeC">
+						<a href="<?php echo base_url();?>index.php/home">
 							<img src="<?php echo base_url();?>template/front/img/themes/rental.png" alt="Logo">
-							City Environment
+							Online Rental
 						</a>
 					</div>
 				</div><!--/end responsive container-->
@@ -79,37 +47,48 @@
 					<div class="res-container">
 						<ul class="nav navbar-nav">
 							<!-- Home -->
-							<li class="dropdown home <?php echo "$homeA"?>">
-								<a href="<?php echo base_url();?>index.php/homeC">
+							<li class="dropdown home active">
+								<a href="<?php echo base_url();?>index.php/home">
 									Home
 								</a>
 								
 							</li>
 							<!-- End Home -->
 
-							
-							<!-- Lifestyle -->
-							<li class="dropdown home <?php echo "$reviewA"?>">
-								<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-									Our Objectives
+							<!-- Find A Home -->
+							<li class="dropdown mega-menu-fullwidth">
+								<a href="<?php echo base_url();?>index.php/home/search">
+									Find A Home
 								</a>
+								
+							</li>
+							<!-- End Find A Home -->
+
+							<!-- Post Ad -->
+							<li class="dropdown mega-menu-fullwidth">
+								<a href="javascript:void(0);" >
+									Post Ad
+								</a>
+							</li>
+							<!-- End Post Ad -->
+
+							<!-- My Profile -->
+							<li class="dropdown mega-menu-fullwidth">
+								<a href="<?php echo base_url();?>index.php/home/my_profile">
+									My Profile
+								</a>
+								
+							</li>
+							<!-- End My Profile -->
+
+							<!-- Lifestyle -->
+							<li class="dropdown mega-menu-fullwidth">
+								<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+									Recent Reviews
+								</a>
+								
 							</li>
 							<!-- End Lifestyle -->
-
-							<!-- Login -->
-							<li class="dropdown home <?php echo "$loginA"?>" >
-								<a href="<?php echo base_url();?>index.php/loginC">
-									Login
-								</a>
-							</li>
-							<!-- Login -->
-
-							<li class="dropdown home <?php echo "$registerA"?>">
-								<a href="<?php echo base_url();?>index.php/loginC/register">
-									Register
-								</a>
-							</li>
-
 						</ul>
 					</div><!--/responsive container-->
 				</div><!--/navbar-collapse-->
